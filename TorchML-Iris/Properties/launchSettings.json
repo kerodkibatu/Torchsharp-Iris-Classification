@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TorchML-Iris": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\Kerod\\source\\repos\\TorchML-Iris\\TorchML-Iris"
+    }
+  }
+}
