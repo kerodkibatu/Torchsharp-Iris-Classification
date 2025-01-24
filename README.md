@@ -29,8 +29,8 @@ The Iris dataset is included in the `Iris.csv` file. It contains 150 samples wit
 ## Usage
 1. Clone the repository:
    ```bash
-   git clone https://github.com/kerodkibatu/TorchSharp-Iris.git
-   cd TorchSharp-Iris
+   git clone https://github.com/kerodkibatu/Torchsharp-Iris-Classification.git
+   cd Torchsharp-Iris-Classification
    ```
 2. Install dependencies:
    ```bash
