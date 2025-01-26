@@ -7,9 +7,8 @@ using static TorchSharp.torch.nn;
 // Set seed for reproducibility
 torch.manual_seed(42);
 
-// Load Iris dataset
-// Load from CSV: Iris.csv
-var data = System.IO.File.ReadAllLines("Iris.csv")[1..];
+// Load Iris dataset and skip header
+var data = File.ReadAllLines("Iris.csv")[1..];
 
 string[] classes = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"];
 
@@ -31,7 +30,7 @@ for (int i = 0; i < 150; i++)
 var features = torch.tensor(featuresRaw, dtype: ScalarType.Float32);
 var labels = torch.tensor(labelsRaw, dtype: ScalarType.Int64);
 
-// Split dataset into training and test sets
+// Split dataset into training and test sets; 80% training, 20% test split
 int trainSize = (int)(0.8 * features.shape[0]);
 var indices = torch.randperm(features.shape[0]);
 var trainFeatures = features.index(indices[..trainSize]);
