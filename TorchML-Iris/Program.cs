@@ -59,6 +59,7 @@ var optimizer = torch.optim.Adam(model.parameters(), learningRate);
 // Training loop
 for (int epoch = 0; epoch < numEpochs; epoch++)
 {
+    mode.train()
     // Forward pass
     using var outputs = model.forward(trainFeatures);
     using var loss = criterion.forward(outputs, trainLabels);
@@ -67,9 +68,10 @@ for (int epoch = 0; epoch < numEpochs; epoch++)
     optimizer.zero_grad();
     loss.backward();
     optimizer.step();
-
+    
+    mode.eval()
     // Test accuracy
-    using (torch.no_grad())
+    using (torch.inference_mode())
     {
         var predicted = outputs.argmax(1);
         var correct = (predicted == trainLabels).sum().ToInt32();
@@ -84,7 +86,7 @@ for (int epoch = 0; epoch < numEpochs; epoch++)
 }
 
 // Evaluation
-using (torch.no_grad())
+using (torch.inference_mode())
 {
     var testOutputs = model.forward(testFeatures);
     var predicted = testOutputs.argmax(1);
